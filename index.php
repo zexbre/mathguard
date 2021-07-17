@@ -16,7 +16,7 @@
 	<b>Email:</b><br/>
 	<input type='text' name='email' value='@' size='30'/><br/><br/>
 
-	<? require("ClassMathGuard.php"); MathGuard::insertQuestion(); ?> 
+	<?php require("ClassMathGuard.php"); MathGuard::insertQuestion(); ?> 
 	<br/><br/>
 	
 	<input type='hidden' name='action' value='submit'/><br/>

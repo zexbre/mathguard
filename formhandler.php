@@ -1,4 +1,4 @@
-<?
+<?php
 
 
 /* first we need to require our MathGuard class */
@@ -14,9 +14,9 @@ if (MathGuard :: checkResult($_REQUEST['mathguard_answer'], $_REQUEST['mathguard
 <br/>
 <br/>
 You entered:
-title: <? echo($_REQUEST['title'])?>; <br/>
+title: <?php echo($_REQUEST['title'])?>; <br/>
 description: <? echo($_REQUEST['description'])?> <br/>
-keywords: <? echo($_REQUEST['keywords'])?> <br/>
-url: <? echo($_REQUEST['url'])?> <br/>
-email: <? echo($_REQUEST['email'])?> <br/>
+keywords: <?php echo($_REQUEST['keywords'])?> <br/>
+url: <?php echo($_REQUEST['url'])?> <br/>
+email: <?php echo($_REQUEST['email'])?> <br/>
 
