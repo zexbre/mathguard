@@ -1,0 +1,23 @@
+{
+    "name": "zexbre/mathguard",
+    "description": "Generate mathematical expression, which can be used as anti-spam solution.",
+    "homepage": "https://www.codegravity.com/projects/mathguard",
+    "support": {
+        "issues": "https://github.com/zexbre/mathguard/issues",
+        "source": "https://github.com/zexbre/mathguard"
+    },
+    "authors": [
+        {
+            "name": "Matej Koval"
+        },
+        {
+            "name": "Nikola Zeravcic",
+            "email": "contact@bytenet.rs"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ZexBre\\MathGuard\\": ""
+        }
+    }
+}

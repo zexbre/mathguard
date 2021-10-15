@@ -1,4 +1,6 @@
-<?
+<?php
+
+namespace ZexBre\MathGuard;
 
 /**
  * @author Matej Koval 
@@ -21,13 +23,13 @@ DEFINE('MATHGUARD_FIELD_CODE',md5("codegravity_code".(date("d")*date("W"))));		/
 class MathGuard {
 
 	/** you can also modify $output to your needs **/
-	function produceOutput($prime) {
+	private static function produceOutput($prime) {
 		$a = rand() % 10; // generates the random number
 		$b = rand() % 10; // generates the random number
 		$code = MathGuard :: generateCode($a, $b, $prime);
 		
 		// please don't remove the backlink, thank you
-		$output = "<a href='http://www.codegravity.com/'>MathGuard</a> " . MATHGUARD_QUESTION .
+		$output = MATHGUARD_QUESTION .
 		"<table border='0'><tr><td></td></tr><tr><td style='font-family: monospace; font-size:" . MATHGUARD_SIZE . "px; font-weight: bold; color: " . MATHGUARD_COLOR . "; padding:0px; margin: 0px; line-height:" . MATHGUARD_LINEHEIGHT . "px;'>\n\n" . MathGuard :: renderExpression($a, $b) . "</td>
 				<td><input type='input' name='".MATHGUARD_FIELD_ANSWER."' size='2' maxlength='2'/><input type='hidden' name='".MATHGUARD_FIELD_CODE."' value='$code' /></td>
 				</tr>
@@ -40,7 +42,7 @@ class MathGuard {
 	/** function that converts the decimal number to line of 3 random characters 
 	 * @param $dec		decimal number that is being converted to line of 3 random characters
 	 * */
-	function decToBin($dec) {
+	private static function decToBin($dec) {
 		$pattern = "123456789ABCDEFGHIJKLMNOPQRTSTUWXYZ"; //without zero, it was interpreted as an empty space
 		$output = "   ";
 		$i = 0;
@@ -67,7 +69,7 @@ class MathGuard {
 	 * @param $a		random number a that renders to the 3x5 matrix consisting of random characters 
 	 * @param $b		random number b that renders to the 3x5 matrix consisting of random characters 
 	 * */
-	function renderExpression($a, $b) {
+	private static function renderExpression($a, $b) {
 
 		$number = array (
 			array (
@@ -170,7 +172,7 @@ class MathGuard {
 	}
 
 	/** A main hashing function: concat of user's answer, hour and the additional prime number (default 37) */
-	function encode($input, $prime) {
+	private static function encode($input, $prime) {
 		return md5($input . date("H-d") . $prime);
 	}
 
@@ -179,7 +181,7 @@ class MathGuard {
 	 * @param $b	second sumber
 	 * @param $prime	additional number to encode with
 	 * */
-	function generateCode($a, $b, $prime) {
+	private static function generateCode($a, $b, $prime) {
 		$code = MathGuard :: encode($a + $b, $prime);
 		return $code;
 	}
@@ -189,7 +191,7 @@ class MathGuard {
 	 * @param $mathguard_answer		answer the user has entered
 	 * @param $mathguard_code		hashcode the mathguard has generated
 	 */
-	function checkResult($mathguard_answer, $mathguard_code, $prime = 37) {
+	public static function checkResult($mathguard_answer, $mathguard_code, $prime = 37) {
 
 		$mathguard_code = @$_POST[MATHGUARD_FIELD_CODE];
 		$mathguard_answer = @$_POST[MATHGUARD_FIELD_ANSWER];
@@ -205,7 +207,7 @@ class MathGuard {
 	}
 
 	/** this function inserts the two math term into your form, the parameter is optional */
-	function insertQuestion($prime = 37) { //default prime is 37, you can change it when specifying the different parameter
+	public static function insertQuestion($prime = 37) { //default prime is 37, you can change it when specifying the different parameter
 
 		$output = MathGuard :: produceOutput($prime);
 
@@ -216,13 +218,12 @@ class MathGuard {
 	/** this function returns math expression into your form, the parameter is optional 
 	 * quite simmilar to insertQuestion, but returns the output as a text instead of echoing
 	 */
-	function returnQuestion($prime = 37) { //default prime is 37, you can change it when specifying the different parameter
+	public static function returnQuestion($prime = 37) { //default prime is 37, you can change it when specifying the different parameter
 
 		$output = MathGuard :: produceOutput($prime);
 
 		return $output;
 
 	}
-
 }
 ?>
